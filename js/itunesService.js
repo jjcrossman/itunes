@@ -19,41 +19,23 @@ angular.module('itunes').service('itunesService', function($http, $q){
      };
 
      function conformData ( arrayOfObj ) {
-       var i = -1;
        var artistData = [];
       arrayOfObj.forEach( function ( songObj ) {
-        i++;
-        var obj = {};
+        var obj = {
+          Artist: songObj.artistName
+          , AlbumArt: songObj.artworkUrl100
+          , Collection: songObj.collectionName
+          , CollectionPrice: songObj.collectionPrice
+          , Play: songObj.previewUrl
+          , Type: songObj.kind
+          , TrackName: songObj.trackName
+          , TrackPrice: songObj.trackPrice
+        };
         artistData.push( obj );
-        for ( var key in songObj ) {
-          if ( key === "artistName" ) {
-            artistData[i]["Artist"] = songObj[key];
-          }
-          else if ( key === "artworkUrl100" ) {
-            artistData[i]["AlbumArt"] = songObj[key];
-          }
-          else if ( key === "collectionName" ) {
-            artistData[i]["Collection"] = songObj[key];
-          }
-          else if ( key === "collectionPrice" ) {
-            artistData[i]["CollectionPrice"] = songObj[key];
-          }
-          else if ( key === "previewUrl" ) {
-            artistData[i]["Play"] = songObj[key];
-          }
-          else if ( key === "kind" ) {
-            artistData[i]["Type"] = songObj[key];
-          }
-          else if ( key === "trackName" ) {
-            artistData[i]["TrackName"] = songObj[key];
-          }
-          else if ( key === "trackPrice" ) {
-            artistData[i]["TrackPrice"] = songObj[key];
-          }
-        }
-      } )
+      } );
       return artistData;
     };
+
 
      /*
        AlbumArt: "http://a3.mzstatic.com/us/r30/Features4/v4/22/be/30/22be305b-d988-4525-453c-7203af1dc5a3/dj.srlprmuo.100x100-75.jpg"
